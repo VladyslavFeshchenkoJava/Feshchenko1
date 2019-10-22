@@ -23,7 +23,7 @@ public class AppendDemo {
         int pos;
 
         while ((pos = stringBuilder.indexOf("=")) != -1) {
-            // stringBuilder.deleteCharAt(pos).insert(pos, " is ");
+            //stringBuilder.deleteCharAt(pos).insert(pos, " is ");
             stringBuilder.replace(pos, pos + 1, " is ");
         }
     }
