@@ -12,13 +12,13 @@ public class Person {
     public Person() {
     }
 
-    void move(){
+    void move() {
 
-        System.out.println(fullName+" move");
+        System.out.println(fullName + " move");
     }
 
-    void talk(){
+    void talk() {
 
-        System.out.println(fullName+" talk");
+        System.out.println(fullName + " talk");
     }
 }
