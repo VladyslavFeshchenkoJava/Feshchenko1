@@ -1,17 +1,17 @@
 package lesson14;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Employee {
     private String fullName;
     private double salary;
+    private LocalDate salaryDate;
 
-    public Employee(String fullName, double salary) {
+    public Employee(String fullName, double salary, LocalDate salaryDate) {
         this.fullName = fullName;
         this.salary = salary;
-    }
-
-    public Employee() {
+        this.salaryDate = salaryDate;
     }
 
     public String getFullName() {
@@ -28,6 +28,14 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public LocalDate getSalaryDate() {
+        return salaryDate;
+    }
+
+    public void setSalaryDate(LocalDate salaryDate) {
+        this.salaryDate = salaryDate;
     }
 
     @Override
