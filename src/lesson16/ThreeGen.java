@@ -1,6 +1,10 @@
 package lesson16;
 
-public class ThreeGen <T,V,K> {
+import lesson9.Animal;
+
+import java.io.Serializable;
+
+public class ThreeGen<T extends Comparable, V extends Animal, K extends Number> {
     private T ob1;
     private V ob2;
     private K ob3;
@@ -35,14 +39,15 @@ public class ThreeGen <T,V,K> {
         this.ob3 = ob3;
     }
 
-    public void showTypes(){
-        System.out.println(ob1.getClass().getName()+" = "+ob1);
-        System.out.println(ob2.getClass().getName()+" = "+ob2);
-        System.out.println(ob3.getClass().getName()+" = "+ob3);
+    public void showTypes() {
+        System.out.println(ob1.getClass().getName() + " = " + ob1);
+        System.out.println(ob2.getClass().getName() + " = " + ob2);
+        System.out.println(ob3.getClass().getName() + " = " + ob3);
     }
 
     public static void main(String[] args) {
-        ThreeGen<Integer, String,Double> threeGen=new ThreeGen<>(15,"AAA",26.65);
+        Animal dog = new Animal("bones", "in yard");
+        ThreeGen<Integer, Animal, Double> threeGen = new ThreeGen<>(15, dog, 26.65);
         threeGen.showTypes();
     }
 }

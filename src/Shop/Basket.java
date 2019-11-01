@@ -1,25 +1,31 @@
 package Shop;
 
-public class Basket {
-    private Product[] purchasedProducts;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-    public Basket(Product[] purchasedProducts) {
+public class Basket {
+    private ArrayList<Product> purchasedProducts;
+
+    public Basket(ArrayList<Product> purchasedProducts) {
         this.purchasedProducts = purchasedProducts;
     }
 
-    public Product[] getPurchasedProducts() {
+    public ArrayList<Product> getPurchasedProducts() {
         return purchasedProducts;
     }
 
-    public void setPurchasedProducts(Product[] purchasedProducts) {
+    public void setPurchasedProducts(ArrayList<Product> purchasedProducts) {
         this.purchasedProducts = purchasedProducts;
     }
 
-    public static void productInBasket(Product[] products) {
-        System.out.println("You added to Basket: ");
-        for (Product p : products) {
+    public static ArrayList<Product> addProductToBasket(Scanner scanner, Product[] products) {
+        while (true) {
+            System.out.println("Enter which product you want add to basket");
+            System.out.println("or press '0' to quite");
+            String selectProduct = scanner.nextLine();
+            for (Product p:products){
 
-            System.out.println(p.getName());
+            }
         }
     }
 

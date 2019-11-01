@@ -1,5 +1,9 @@
 package Shop;
 
+import lesson9.Cat;
+
+import java.util.Scanner;
+
 public class Product {
     private String name, price, rating;
     private int id;
@@ -46,9 +50,32 @@ public class Product {
         this.id = id;
     }
 
-    public static void viewProducts(Category category) {
+    public void viewProducts(Scanner scanner, Category[] category) {
+        System.out.println("Select category:");
+        System.out.println("1 - food; 2 - clothes; 3 - electronics; 0 - exit");
+        String categoryEntered = scanner.nextLine();
+        while (true) {
+            if (categoryEntered.equals("1")) {
+                printProducts(category[0]);
+                break;
+            } else if (categoryEntered.equals("2")) {
+                printProducts(category[1]);
+                break;
+            } else if (categoryEntered.equals("3")) {
+                printProducts(category[2]);
+                break;
+            }else if (categoryEntered.equals("0")){
+                break;
+            } else {
+                System.out.println("Enter the correct operation number");
+            }
+        }
+    }
+
+    public static void printProducts(Category category) {
         Product[] products = category.getProducts();
-        for (Product p : products) {
+        for (
+                Product p : products) {
 
             System.out.println(p.name);
         }
