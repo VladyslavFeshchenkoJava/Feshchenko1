@@ -1,17 +1,17 @@
 package Shop;
 
-import lesson9.Cat;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Product {
-    private String name, price, rating;
+    private String name, rating;
+    double price;
     private int id;
 
-    public Product(String name, String price, String rating, int id) {
+    public Product(String name, String rating, double price, int id) {
         this.name = name;
-        this.price = price;
         this.rating = rating;
+        this.price = price;
         this.id = id;
     }
 
@@ -26,11 +26,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -50,21 +50,24 @@ public class Product {
         this.id = id;
     }
 
-    public void viewProducts(Scanner scanner, Category[] category) {
+    public static void viewProducts(Scanner scanner, Category[] category, ArrayList<Product> productsInBasket) {
         System.out.println("Select category:");
-        System.out.println("1 - food; 2 - clothes; 3 - electronics; 0 - exit");
+        System.out.println("1 - food; 2 - clothes; 3 - electronics; 0 - back");
         String categoryEntered = scanner.nextLine();
         while (true) {
             if (categoryEntered.equals("1")) {
                 printProducts(category[0]);
+                Basket.addProductInBasket(scanner, category[0].getProducts(),productsInBasket);
                 break;
             } else if (categoryEntered.equals("2")) {
                 printProducts(category[1]);
+                Basket.addProductInBasket(scanner, category[1].getProducts(),productsInBasket);
                 break;
             } else if (categoryEntered.equals("3")) {
                 printProducts(category[2]);
+                Basket.addProductInBasket(scanner, category[2].getProducts(),productsInBasket);
                 break;
-            }else if (categoryEntered.equals("0")){
+            } else if (categoryEntered.equals("0")) {
                 break;
             } else {
                 System.out.println("Enter the correct operation number");
@@ -77,7 +80,7 @@ public class Product {
         for (
                 Product p : products) {
 
-            System.out.println(p.name);
+            System.out.println(p.name + " " + p.price);
         }
     }
 }
