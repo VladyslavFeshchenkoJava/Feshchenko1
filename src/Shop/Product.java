@@ -1,18 +1,22 @@
 package Shop;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Product {
     private String name, rating;
-    double price;
+    private double price;
     private int id;
+    private String category;
 
-    public Product(String name, String rating, double price, int id) {
+    public Product(String name, String rating, double price, int id, Category category) {
         this.name = name;
         this.rating = rating;
         this.price = price;
         this.id = id;
+        this.category = category.getName();
     }
 
     public Product() {
@@ -50,22 +54,31 @@ public class Product {
         this.id = id;
     }
 
-    public static void viewProducts(Scanner scanner, Category[] category, ArrayList<Product> productsInBasket) {
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public static void viewProducts(Scanner scanner, Category[] category, List<Product> productsInBasket, User user) {
+        System.out.println();
         System.out.println("Select category:");
         System.out.println("1 - food; 2 - clothes; 3 - electronics; 0 - back");
-        String categoryEntered = scanner.nextLine();
         while (true) {
+            String categoryEntered = scanner.nextLine();
             if (categoryEntered.equals("1")) {
                 printProducts(category[0]);
-                Basket.addProductInBasket(scanner, category[0].getProducts(),productsInBasket);
+                Basket.addProductInBasket(scanner, category[0].getProducts(), productsInBasket,user);
                 break;
             } else if (categoryEntered.equals("2")) {
                 printProducts(category[1]);
-                Basket.addProductInBasket(scanner, category[1].getProducts(),productsInBasket);
+                Basket.addProductInBasket(scanner, category[1].getProducts(), productsInBasket,user);
                 break;
             } else if (categoryEntered.equals("3")) {
                 printProducts(category[2]);
-                Basket.addProductInBasket(scanner, category[2].getProducts(),productsInBasket);
+                Basket.addProductInBasket(scanner, category[2].getProducts(), productsInBasket,user);
                 break;
             } else if (categoryEntered.equals("0")) {
                 break;
@@ -77,10 +90,11 @@ public class Product {
 
     public static void printProducts(Category category) {
         Product[] products = category.getProducts();
-        for (
-                Product p : products) {
-
-            System.out.println(p.name + " " + p.price);
+        System.out.println();
+        for (Product p : products) {
+            p.category = category.getName();
+            System.out.println(p.name + " " + NumberFormat.getCurrencyInstance().format(p.getPrice()));
         }
+        System.out.println();
     }
 }

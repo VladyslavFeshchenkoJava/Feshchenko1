@@ -1,6 +1,7 @@
 package Shop;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Category {
@@ -32,17 +33,19 @@ public class Category {
         this.products = products;
     }
 
-    public static void viewCategories(Scanner scanner, Category[] categories) {
-        ArrayList<Product> productsInBasket=new ArrayList<>();
+    public static void viewCategories(Scanner scanner, Category[] categories,User user) {
+        List<Product> productsInBasket=new ArrayList<>();
         while (true) {
+            System.out.println();
             System.out.println("1 - categories of store, 0 - exit");
             String operationEntered = scanner.nextLine();
             if (operationEntered.equals("1")) {
+                System.out.println();
                 System.out.println("Categories of our store: ");
                 for (Category s : categories) {
                     System.out.println(s.name);
                 }
-                Product.viewProducts(scanner, categories,productsInBasket);
+                Product.viewProducts(scanner, categories,productsInBasket,user);
             } else if (operationEntered.equals("0")) {
                 break;
             } else {
