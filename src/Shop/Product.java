@@ -70,15 +70,15 @@ public class Product {
             String categoryEntered = scanner.nextLine();
             if (categoryEntered.equals("1")) {
                 printProducts(category[0]);
-                Basket.addProductInBasket(scanner, category[0].getProducts(), productsInBasket,user);
+                Basket.addProductInBasket(scanner, category[0].getProducts(), productsInBasket, user);
                 break;
             } else if (categoryEntered.equals("2")) {
                 printProducts(category[1]);
-                Basket.addProductInBasket(scanner, category[1].getProducts(), productsInBasket,user);
+                Basket.addProductInBasket(scanner, category[1].getProducts(), productsInBasket, user);
                 break;
             } else if (categoryEntered.equals("3")) {
                 printProducts(category[2]);
-                Basket.addProductInBasket(scanner, category[2].getProducts(), productsInBasket,user);
+                Basket.addProductInBasket(scanner, category[2].getProducts(), productsInBasket, user);
                 break;
             } else if (categoryEntered.equals("0")) {
                 break;
