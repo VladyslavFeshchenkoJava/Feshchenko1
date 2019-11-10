@@ -1,22 +1,23 @@
 package Shop;
 
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import lesson8.Person;
 
-public class Product {
+import java.text.NumberFormat;
+import java.util.*;
+
+public class Product implements Comparator<Product> {
     private String name, rating;
     private double price;
-    private int id;
-    private String category;
+    private String id;
+    private String categoryName;
+    Category category;
 
-    public Product(String name, String rating, double price, int id, Category category) {
+    public Product(String name, String rating, double price, String id, Category category) {
         this.name = name;
         this.rating = rating;
         this.price = price;
         this.id = id;
-        this.category = category.getName();
+        this.category = category;
     }
 
     public Product() {
@@ -30,14 +31,6 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getRating() {
         return rating;
     }
@@ -46,20 +39,41 @@ public class Product {
         this.rating = rating;
     }
 
-    public int getId() {
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getCategory() {
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public int compare(Product o1, Product o2) {
+        return 0;
     }
 
     public static void viewProducts(Scanner scanner, Category[] category, List<Product> productsInBasket, User user) {
@@ -69,7 +83,8 @@ public class Product {
         while (true) {
             String categoryEntered = scanner.nextLine();
             if (categoryEntered.equals("1")) {
-                printProducts(category[0]);
+                // printProducts(category[0]);
+                sortedName(category[0]);
                 Basket.addProductInBasket(scanner, category[0].getProducts(), productsInBasket, user);
                 break;
             } else if (categoryEntered.equals("2")) {
@@ -89,12 +104,25 @@ public class Product {
     }
 
     public static void printProducts(Category category) {
-        Product[] products = category.getProducts();
+        Map<String, Product> products = category.getProducts();
+        products.forEach((k, v) -> v.setCategoryName(category.getName()));
         System.out.println();
-        for (Product p : products) {
-            p.category = category.getName();
-            System.out.println(p.name + " " + NumberFormat.getCurrencyInstance().format(p.getPrice()));
+        products.forEach((k, v) -> System.out.println(v.getName() + " " + NumberFormat.getCurrencyInstance().format(v.getPrice())
+                + " ID:" + v.getId()));
+        System.out.println();
+    }
+
+    public static void sortedName(Category category) {
+        Comparator<Product> comparator = Comparator.comparing(Product::getName).thenComparing(Product::getPrice);
+        SortedSet<Product> set = new TreeSet<>(comparator);
+        Map<String, Product> productMap = new HashMap<>();
+        productMap.putAll(category.getProducts());
+        Set<String> keys = productMap.keySet();
+        for (String key : keys) {
+            productMap.get(key).setCategoryName(category.getName());
+            set.add(productMap.get(key));
         }
-        System.out.println();
+        set.forEach(v -> System.out.println(v.getName() + " " + NumberFormat.getCurrencyInstance().format(v.getPrice()) + " ID:" +
+                v.getId()));
     }
 }

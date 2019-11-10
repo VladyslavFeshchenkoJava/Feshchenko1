@@ -1,27 +1,41 @@
 package Shop;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ShopDemo {
     public static void main(String[] args) {
 
-        Product bread = new Product("bread", "15", 12.0, 1, new Category());
-        Product milk = new Product("milk", "14", 22, 2,new Category());
-        Product meet = new Product("meet", "13", 100, 3,new Category());
+        Product bread=new Product("bred","14",12,"1",new Category());
+        Product milk = new Product("milk", "14", 22, "2",new Category());
+        Product meet = new Product("meet", "13", 100, "3",new Category());
 
-        Product pants = new Product("pants", "5", 300, 4,new Category());
-        Product t_shirt = new Product("t-shirt", "2", 150, 5,new Category());
-        Product coat = new Product("coat", "1", 1000, 6,new Category());
+        Map<String,Product> foodProducts=new TreeMap<>();
+        foodProducts.put("1",bread);
+        foodProducts.put("2",milk);
+        foodProducts.put("3",meet);
 
-        Product tv = new Product("television", "7", 12000, 7,new Category());
-        Product computer = new Product("computer", "9", 20000, 8,new Category());
-        Product smartphone = new Product("smartphone", "8", 10000, 9,new Category());
+        Product pants = new Product("pants", "5", 300, "1",new Category());
+        Product t_shirt = new Product("t-shirt", "2", 150, "2",new Category());
+        Product coat = new Product("coat", "1", 1000, "3",new Category());
 
-        Category food = new Category("food", new Product[]{bread, milk, meet});
-        Category clothes = new Category("clothes", new Product[]{pants, t_shirt, coat});
-        Category electronics = new Category("electronics", new Product[]{tv, computer, smartphone});
+        Map<String,Product> clothesProducts=new TreeMap<>();
+        clothesProducts.put("1",pants);
+        clothesProducts.put("2",t_shirt);
+        clothesProducts.put("3",coat);
+
+        Product tv = new Product("television", "7", 12000, "1",new Category());
+        Product computer = new Product("computer", "9", 20000, "2",new Category());
+        Product smartphone = new Product("smartphone", "8", 10000, "3",new Category());
+
+        Map<String,Product> electronicsProducts = new TreeMap<>();
+        electronicsProducts.put("1",tv);
+        electronicsProducts.put("2",computer);
+        electronicsProducts.put("3",smartphone);
+
+        Category food = new Category("food",foodProducts);
+        Category clothes = new Category("clothes", clothesProducts);
+        Category electronics = new Category("electronics", electronicsProducts);
+
 
         Category[] categories = {food, clothes, electronics};
         Scanner scanner = new Scanner(System.in);

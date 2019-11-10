@@ -1,15 +1,13 @@
 package Shop;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Category {
     private String name;
 
-    private Product[] products;
+    private Map<String, Product> products;
 
-    public Category(String name, Product[] products) {
+    public Category(String name, Map<String, Product> products) {
         this.name = name;
         this.products = products;
     }
@@ -25,11 +23,11 @@ public class Category {
         this.name = name;
     }
 
-    public Product[] getProducts() {
+    public Map<String, Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Product[] products) {
+    public void setProducts(Map<String, Product> products) {
         this.products = products;
     }
 

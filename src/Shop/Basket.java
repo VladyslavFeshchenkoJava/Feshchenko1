@@ -4,9 +4,7 @@ import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Basket {
     private List<Product> purchasedProducts;
@@ -23,17 +21,18 @@ public class Basket {
         this.purchasedProducts = purchasedProducts;
     }
 
-    public static void addProductInBasket(Scanner scanner, Product[] products, List<Product> productsInBasket, User user) {
+    public static void addProductInBasket(Scanner scanner, Map<String, Product> products, List<Product> productsInBasket, User user) {
         first:
         while (true) {
             System.out.println();
-            System.out.println("Enter which product you want add to basket");
+            System.out.println("Enter ID of product which you want add to basket");
             System.out.println("or press '0' to quite");
             String selectProduct = scanner.nextLine();
-            for (Product p : products) {
-                if (selectProduct.equals(p.getName())) {
-                    productsInBasket.add(p);
-                    System.out.println(p.getName() + " add in your basket");
+            Set<String> keys = products.keySet();
+            for (String key : keys) {
+                if (selectProduct.equals(key)) {
+                    productsInBasket.add(products.get(key));
+                    System.out.println(products.get(key).getName() + " add in your basket");
                 } else if (selectProduct.equals("0")) {
                     break first;
                 }
@@ -70,15 +69,12 @@ public class Basket {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy ");
         System.out.println();
         System.out.println("Bill for " + user.getLogin());
-        System.out.printf("%14s %35s", "Date: ", dateTime.format(formatter));
-        System.out.println();
+        System.out.printf("%14s %35s \n", "Date: ", dateTime.format(formatter));
         printHyphen();
-        System.out.printf("%12s %15s %20s", "Category", "Product", "Prise");
-        System.out.println();
+        System.out.printf("%12s %15s %20s \n", "Category", "Product", "Prise");
         printHyphen();
         for (Product p : productsInBasket) {
-            System.out.printf("%12s %15s %20s", p.getCategory(), p.getName(), NumberFormat.getCurrencyInstance().format(p.getPrice()));
-            System.out.println();
+            System.out.printf("%12s %15s %20s \n", p.getCategoryName(), p.getName(), NumberFormat.getCurrencyInstance().format(p.getPrice()));
             sum += p.getPrice();
         }
         printHyphen();
