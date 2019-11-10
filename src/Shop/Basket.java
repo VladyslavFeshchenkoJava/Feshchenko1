@@ -1,5 +1,8 @@
 package Shop;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -80,6 +83,7 @@ public class Basket {
         printHyphen();
         System.out.printf("%13s %35s", "Total:", NumberFormat.getCurrencyInstance().format(sum));
         System.out.println();
+        writeToFile(productsInBasket, user);
         productsInBasket.clear();
     }
 
@@ -101,6 +105,24 @@ public class Basket {
         for (int i = 0; i < 60; i++)
             System.out.print("-");
         System.out.println();
+    }
+
+    public static void writeToFile(List<Product> productsInBasket, User user) {
+        try (PrintWriter printWriter = new PrintWriter("report.txt")) {
+            double sum = 0;
+            LocalDateTime dateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy ");
+            printWriter.printf("%14s %35s \n", "Date: ", dateTime.format(formatter));
+            printWriter.println("User " + user.getLogin() + " buy:");
+            for (Product p : productsInBasket) {
+                printWriter.printf("%12s %15s %20s \n", p.getCategoryName(), p.getName(),
+                        NumberFormat.getCurrencyInstance().format(p.getPrice()));
+                sum += p.getPrice();
+            }
+            printWriter.printf("%13s %35s", "Total:", NumberFormat.getCurrencyInstance().format(sum));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
 
