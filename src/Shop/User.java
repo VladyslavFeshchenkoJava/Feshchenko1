@@ -74,7 +74,7 @@ public class User {
                     for (User x : users) {
                         if (loginEntered.equals(x.login) && passwordEntered.equals(x.password)) {
                             System.out.println();
-                            System.out.println("Welcome ");
+                            System.out.println("Welcome " + x.getLogin());
                             newUser = x;
                             break first;
                         }
