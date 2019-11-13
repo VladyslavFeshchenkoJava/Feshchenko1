@@ -80,11 +80,11 @@ public class User {
                     String loginEntered = scanner.nextLine();
                     System.out.println("Enter your password");
                     String passwordEntered = scanner.nextLine();
-                    for (User x : users) {
-                        if (loginEntered.equals(x.login) && passwordEntered.equals(x.password)) {
+                    for (User user : users) {
+                        if (loginEntered.equals(user.login) && passwordEntered.equals(user.password)) {
                             System.out.println();
-                            System.out.println("Welcome " + x.getLogin());
-                            newUser = x;
+                            System.out.println("Welcome " + user.getLogin());
+                            newUser = user;
                             break first;
                         }
                     }
@@ -96,7 +96,7 @@ public class User {
                             newUser = registration(scanner, users);
                             users.add(newUser);
                             System.out.println();
-                            System.out.println("Welcome "+newUser.getLogin());
+                            System.out.println("Welcome " + newUser.getLogin());
                             break first;
                         } else if (!register.equals("0")) {
                             System.out.println("Please enter '1' or '0'");
@@ -107,7 +107,7 @@ public class User {
             } else if (selected.equals("0")) {
                 newUser = registration(scanner, users);
                 System.out.println();
-                System.out.println("Welcome "+newUser.getLogin());
+                System.out.println("Welcome " + newUser.getLogin());
                 users.add(newUser);
                 break second;
             } else {
@@ -118,7 +118,7 @@ public class User {
     }
 
     public static User registration(Scanner scanner, List<User> users) {
-        return new User(UserHelper.correctNewLogin(scanner,users), UserHelper.correctNewPassword(scanner), new Basket(new ArrayList<>()));
+        return new User(UserHelper.correctNewLogin(scanner, users), UserHelper.correctNewPassword(scanner), new Basket(new ArrayList<>()));
     }
 }
 

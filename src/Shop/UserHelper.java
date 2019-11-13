@@ -26,17 +26,17 @@ public class UserHelper {
     public static String correctNewPassword(Scanner scanner) {
         String newPassword;
         String confirmPassword;
-        while (true){
+        while (true) {
             System.out.println("Enter new password");
-            newPassword=scanner.nextLine();
+            newPassword = scanner.nextLine();
             System.out.println("Confirm password");
-            confirmPassword=scanner.nextLine();
+            confirmPassword = scanner.nextLine();
             try {
                 if (!newPassword.equals(confirmPassword)) {
                     throw new WrongPasswordException("Yore password and your confirm password do not match");
                 }
                 break;
-            }catch (WrongPasswordException e){
+            } catch (WrongPasswordException e) {
                 System.out.println(e.getMessage());
             }
         }

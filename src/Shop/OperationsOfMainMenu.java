@@ -1,5 +1,5 @@
 package Shop;
 
-public enum Operations {
+public enum OperationsOfMainMenu {
     CATEGORY_LIST, EXIT
 }

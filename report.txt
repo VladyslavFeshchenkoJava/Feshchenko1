@@ -1,6 +1,6 @@
         Date:                          13 11 2019  
-User aa buy:
-        food            milk              22,00 ₴ 
-        food            bred              12,00 ₴ 
- electronics      television          12 000,00 ₴ 
-       Total:                         12 034,00 ₴
+User AAAA buy:
+     clothes         t-shirt             150,00 ₴ 
+     clothes            coat           1 000,00 ₴ 
+ electronics        computer          20 000,00 ₴ 
+       Total:                         21 150,00 ₴

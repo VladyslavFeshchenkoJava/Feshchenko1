@@ -69,7 +69,7 @@ public class Category {
             System.out.println();
             System.out.println("Enter CATEGORY_LIST or EXIT");
             try {
-                Operations operation = Operations.valueOf(scanner.nextLine());
+                OperationsOfMainMenu operation = OperationsOfMainMenu.valueOf(scanner.nextLine());
                 switch (operation) {
                     case CATEGORY_LIST: {
                         System.out.println();
