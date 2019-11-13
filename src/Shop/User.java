@@ -57,8 +57,17 @@ public class User {
         return Objects.hash(login, password, basket);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", basket=" + basket +
+                '}';
+    }
+
     public static User authentication(Scanner scanner, List<User> users) {
-        User newUser = new User();
+        User newUser;
         System.out.println("If you have account press '1'");
         System.out.println("If you want to register press '0'");
         second:
@@ -86,7 +95,8 @@ public class User {
                         if (register.equals("1")) {
                             newUser = registration(scanner, users);
                             users.add(newUser);
-                            System.out.println("Welcome");
+                            System.out.println();
+                            System.out.println("Welcome "+newUser.getLogin());
                             break first;
                         } else if (!register.equals("0")) {
                             System.out.println("Please enter '1' or '0'");
@@ -96,7 +106,8 @@ public class User {
                 break second;
             } else if (selected.equals("0")) {
                 newUser = registration(scanner, users);
-                System.out.println("Welcome");
+                System.out.println();
+                System.out.println("Welcome "+newUser.getLogin());
                 users.add(newUser);
                 break second;
             } else {
@@ -107,31 +118,7 @@ public class User {
     }
 
     public static User registration(Scanner scanner, List<User> users) {
-        String newLogin;
-        boolean correctLogin;
-        second:
-        do {
-            correctLogin = false;
-            System.out.println("Enter new login");
-            newLogin = scanner.nextLine();
-            for (User u : users) {
-                if (u.login.equals(newLogin)) {
-                    System.out.println("User with this login already exist");
-                    correctLogin = true;
-                }
-            }
-        } while (correctLogin);
-
-        while (true) {
-            System.out.println("Enter new password");
-            String newPassword = scanner.nextLine();
-            System.out.println("Confirm the password");
-            String confirmPassword = scanner.nextLine();
-            if (newPassword.equals(confirmPassword)) {
-                return new User(newLogin, newPassword, new Basket(new ArrayList<Product>()));
-            } else {
-                System.out.println("Yore password and your confirm password do not match");
-            }
-        }
+        return new User(UserHelper.correctNewLogin(scanner,users), UserHelper.correctNewPassword(scanner), new Basket(new ArrayList<>()));
     }
 }
+

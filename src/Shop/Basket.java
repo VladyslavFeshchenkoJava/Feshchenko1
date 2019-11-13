@@ -24,6 +24,26 @@ public class Basket {
         this.purchasedProducts = purchasedProducts;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Basket basket = (Basket) o;
+        return Objects.equals(purchasedProducts, basket.purchasedProducts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(purchasedProducts);
+    }
+
+    @Override
+    public String toString() {
+        return "Basket{" +
+                "purchasedProducts=" + purchasedProducts +
+                '}';
+    }
+
     public static void addProductInBasket(Scanner scanner, Map<String, Product> products, List<Product> productsInBasket, User user) {
         first:
         while (true) {
@@ -111,7 +131,7 @@ public class Basket {
         try (PrintWriter printWriter = new PrintWriter("report.txt")) {
             double sum = 0;
             LocalDateTime dateTime = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy ");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy ");
             printWriter.printf("%14s %35s \n", "Date: ", dateTime.format(formatter));
             printWriter.println("User " + user.getLogin() + " buy:");
             for (Product p : productsInBasket) {

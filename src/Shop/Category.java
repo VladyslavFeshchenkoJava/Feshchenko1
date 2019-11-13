@@ -3,12 +3,13 @@ package Shop;
 import java.util.*;
 
 public class Category {
-    private String name;
+    private String name, ID;
 
     private Map<String, Product> products;
 
-    public Category(String name, Map<String, Product> products) {
+    public Category(String name, String ID, Map<String, Product> products) {
         this.name = name;
+        this.ID = ID;
         this.products = products;
     }
 
@@ -23,6 +24,14 @@ public class Category {
         this.name = name;
     }
 
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
     public Map<String, Product> getProducts() {
         return products;
     }
@@ -31,24 +40,54 @@ public class Category {
         this.products = products;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return Objects.equals(name, category.name) &&
+                Objects.equals(products, category.products);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, products);
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                ", products=" + products +
+                '}';
+    }
+
     public static void viewCategories(Scanner scanner, Category[] categories, User user) {
         List<Product> productsInBasket = new ArrayList<>();
+        first:
         while (true) {
             System.out.println();
-            System.out.println("1 - categories of store, 0 - exit");
-            String operationEntered = scanner.nextLine();
-            if (operationEntered.equals("1")) {
-                System.out.println();
-                System.out.println("Categories of our store: ");
-                for (Category s : categories) {
-                    System.out.println(s.name);
+            System.out.println("Enter CATEGORY_LIST or EXIT");
+            try {
+                Operations operation = Operations.valueOf(scanner.nextLine());
+                switch (operation) {
+                    case CATEGORY_LIST: {
+                        System.out.println();
+                        System.out.println("Categories of our store: ");
+                        for (Category category : categories) {
+                            System.out.println(category.name+" -- ID: "+category.getID());
+                        }
+                        Product.viewProducts(scanner, categories, productsInBasket, user);
+                        break;
+                    }
+                    case EXIT: {
+                        break first;
+                    }
                 }
-                Product.viewProducts(scanner, categories, productsInBasket, user);
-            } else if (operationEntered.equals("0")) {
-                break;
-            } else {
-                System.out.println("Enter '1' or '0'");
+            } catch (IllegalArgumentException e) {
+                System.out.println("You entered invalid operation");
             }
         }
     }
 }
+
