@@ -62,7 +62,7 @@ public class Category {
                 '}';
     }
 
-    public static void viewCategories(Scanner scanner, Category[] categories, User user) {
+    public static void viewCategories(Scanner scanner, List<Category> categories, User user) {
         List<Product> productsInBasket = new ArrayList<>();
         first:
         while (true) {

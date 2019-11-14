@@ -68,7 +68,7 @@ public class BasketHelper {
     public static void buyProducts(List<Product> productsInBasket, User user) {
         double sum = 0;
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy ");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy ");
         System.out.println();
         System.out.println("Bill for " + user.getLogin());
         System.out.printf("%14s %35s \n", "Date: ", dateTime.format(formatter));

@@ -36,8 +36,11 @@ public class ShopDemo {
         Category clothes = new Category("clothes", "2", clothesProducts);
         Category electronics = new Category("electronics", "3", electronicsProducts);
 
+        List<Category> categories = new ArrayList<>();
+        categories.add(food);
+        categories.add(clothes);
+        categories.add(electronics);
 
-        Category[] categories = {food, clothes, electronics};
         Scanner scanner = new Scanner(System.in);
         List<User> users = new ArrayList<>();
         users.add(new User("John Doe", "123456", new Basket(new ArrayList<>())));

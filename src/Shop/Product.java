@@ -87,7 +87,7 @@ public class Product {
                 '}';
     }
 
-    public static void viewProducts(Scanner scanner, Category[] categories, List<Product> productsInBasket, User user) {
+    public static void viewProducts(Scanner scanner, List<Category> categories, List<Product> productsInBasket, User user) {
         System.out.println();
         first:
         while (true) {

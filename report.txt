@@ -1,5 +1,7 @@
         Date:                          14 11 2019  
 User AAAA buy:
+        food            bred              12,00 ₴ 
         food            milk              22,00 ₴ 
         food            meet             100,00 ₴ 
-       Total:                            122,00 ₴
+     clothes            coat           1 000,00 ₴ 
+       Total:                          1 134,00 ₴
