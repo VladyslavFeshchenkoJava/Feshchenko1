@@ -38,7 +38,7 @@ public class ProductHelper {
         productMap.putAll(category.getProducts());
         Set<String> keys = productMap.keySet();
         for (String key : keys) {
-            productMap.get(key).setCategoryName(category.getName());
+            productMap.get(key).setCategory(category);
             set.add(productMap.get(key));
         }
         set.forEach(v -> System.out.println(v.getName() + " " + NumberFormat.getCurrencyInstance().format(v.getPrice()) + " ID:" +

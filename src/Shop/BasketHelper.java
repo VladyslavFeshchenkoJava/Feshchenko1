@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class BasketHelper {
-    public static void addProductInBasket(Scanner scanner, Map<String, Product> products, List<Product> productsInBasket) {
+    public static List<Product> addProductInBasket(Scanner scanner, Map<String, Product> products, List<Product> productsInBasket) {
         first:
         while (true) {
             System.out.println();
@@ -28,6 +28,7 @@ public class BasketHelper {
                 }
             }
         }
+        return productsInBasket;
     }
 
     public static List<Product> operationsWithBasket(Scanner scanner, List<Product> productsInBasket, User user) {
@@ -74,9 +75,9 @@ public class BasketHelper {
         printHyphen();
         System.out.printf("%12s %15s %20s \n", "Category", "Product", "Prise");
         printHyphen();
-        for (Product p : productsInBasket) {
-            System.out.printf("%12s %15s %20s \n", p.getCategoryName(), p.getName(), NumberFormat.getCurrencyInstance().format(p.getPrice()));
-            sum += p.getPrice();
+        for (Product product : productsInBasket) {
+            System.out.printf("%12s %15s %20s \n", product.getCategory().getName(), product.getName(), NumberFormat.getCurrencyInstance().format(product.getPrice()));
+            sum += product.getPrice();
         }
         printHyphen();
         System.out.printf("%13s %35s", "Total:", NumberFormat.getCurrencyInstance().format(sum));
@@ -90,8 +91,8 @@ public class BasketHelper {
         System.out.println("Enter which product you want to remove");
         String productName = scanner.nextLine();
         int index = 0;
-        for (Product p : productsInBasket) {
-            if (productName.equals(p.getName())) {
+        for (Product product : productsInBasket) {
+            if (productName.equals(product.getName())) {
                 productsInBasket.remove(index);
                 break;
             }
@@ -112,10 +113,10 @@ public class BasketHelper {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy ");
             printWriter.printf("%14s %35s \n", "Date: ", dateTime.format(formatter));
             printWriter.println("User " + user.getLogin() + " buy:");
-            for (Product p : productsInBasket) {
-                printWriter.printf("%12s %15s %20s \n", p.getCategoryName(), p.getName(),
-                        NumberFormat.getCurrencyInstance().format(p.getPrice()));
-                sum += p.getPrice();
+            for (Product product : productsInBasket) {
+                printWriter.printf("%12s %15s %20s \n", product.getCategory().getName(), product.getName(),
+                        NumberFormat.getCurrencyInstance().format(product.getPrice()));
+                sum += product.getPrice();
             }
             printWriter.printf("%13s %35s", "Total:", NumberFormat.getCurrencyInstance().format(sum));
         } catch (IOException ex) {

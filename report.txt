@@ -1,6 +1,5 @@
-        Date:                          13 11 2019  
+        Date:                          14 11 2019  
 User AAAA buy:
-     clothes         t-shirt             150,00 ₴ 
-     clothes            coat           1 000,00 ₴ 
- electronics        computer          20 000,00 ₴ 
-       Total:                         21 150,00 ₴
+        food            milk              22,00 ₴ 
+        food            meet             100,00 ₴ 
+       Total:                            122,00 ₴

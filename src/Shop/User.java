@@ -66,7 +66,7 @@ public class User {
                 '}';
     }
 
-    public static User authentication(Scanner scanner, List<User> users) {
+    public static User entranceINShop(Scanner scanner, List<User> users) {
         User newUser;
         System.out.println("If you have account press '1'");
         System.out.println("If you want to register press '0'");

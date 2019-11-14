@@ -6,7 +6,6 @@ public class Product {
     private String name, rating;
     private double price;
     private String id;
-    private String categoryName;
     private Category category;
 
     public Product(String name, String rating, double price, String id, Category category) {
@@ -52,14 +51,6 @@ public class Product {
         this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
     public Category getCategory() {
         return category;
     }
@@ -77,13 +68,12 @@ public class Product {
                 Objects.equals(name, product.name) &&
                 Objects.equals(rating, product.rating) &&
                 Objects.equals(id, product.id) &&
-                Objects.equals(categoryName, product.categoryName) &&
                 Objects.equals(category, product.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, rating, price, id, categoryName, category);
+        return Objects.hash(name, rating, price, id, category);
     }
 
     @Override
@@ -93,8 +83,7 @@ public class Product {
                 ", rating='" + rating + '\'' +
                 ", price=" + price +
                 ", id='" + id + '\'' +
-                ", categoryName='" + categoryName + '\'' +
-                ", category=" + category +
+                ", category=" + category.getName() +
                 '}';
     }
 
@@ -104,10 +93,10 @@ public class Product {
         while (true) {
             System.out.println("Select category's ID or enter '0' for back");
             String categoryEntered = scanner.nextLine();
-            for (Category c : categories) {
-                if (c.getID().equals(categoryEntered)) {
-                    ProductHelper.printProducts(c, scanner);
-                    Basket.basketOperations(scanner, c.getProducts(), productsInBasket, user);
+            for (Category category : categories) {
+                if (category.getID().equals(categoryEntered)) {
+                    ProductHelper.printProducts(category, scanner);
+                    Basket.basketOperations(scanner, category.getProducts(), productsInBasket, user);
                     break first;
                 } else if (categoryEntered.equals("0")) {
                     break first;

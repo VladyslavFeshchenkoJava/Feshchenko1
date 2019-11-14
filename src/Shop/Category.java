@@ -75,7 +75,7 @@ public class Category {
                         System.out.println();
                         System.out.println("Categories of our store: ");
                         for (Category category : categories) {
-                            System.out.println(category.name+" -- ID: "+category.getID());
+                            System.out.println(category.name + " -- ID: " + category.getID());
                         }
                         Product.viewProducts(scanner, categories, productsInBasket, user);
                         break;

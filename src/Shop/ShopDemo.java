@@ -43,6 +43,6 @@ public class ShopDemo {
         users.add(new User("John Doe", "123456", new Basket(new ArrayList<>())));
         users.add(new User("AAAA", "12345", new Basket(new ArrayList<>())));
 
-        Category.viewCategories(scanner, categories, User.authentication(scanner, users));
+        Category.viewCategories(scanner, categories, User.entranceINShop(scanner, users));
     }
 }
